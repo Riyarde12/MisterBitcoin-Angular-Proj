@@ -6,6 +6,7 @@ import { BitcoinAppComponent } from './pages/bitcoin-app/bitcoin-app.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { ContactEditPageComponent } from './pages/contact-edit-page/contact-edit-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
 
@@ -22,7 +23,8 @@ const routes: Routes = [
         component: ContactEditPageComponent,
 
       },
-    ]
+    ],
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -36,7 +38,9 @@ const routes: Routes = [
   {
     path: '',
     component: BitcoinAppComponent,
-  }
+    canActivate: [AuthGuard]
+  },
+  // { path: "login", redirectTo: "/login", pathMatch: "full" },
 ];
 
 @NgModule({

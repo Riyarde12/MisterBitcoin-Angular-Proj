@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, throwError } from 'rxjs';
-import { of } from 'rxjs';
-import { Contact } from '../models/contact.model';
+import { BehaviorSubject, EMPTY, throwError } from 'rxjs';
 import { Login, Signup, User } from '../models/user.model';
 import { StorageService } from './storage-service.service';
 
@@ -19,11 +17,12 @@ export class UserService {
     moves: []
   }
 
+  private LOGGED_IN_USER = 'loggedInUser'
   private USERS_KEY = 'users'
 
   private _users: User[] = []
 
-  private _user$ = new BehaviorSubject<User>({} as User)
+  private _user$ = new BehaviorSubject<User>(this.storageService.load(this.LOGGED_IN_USER) || null)
   public user$ = this._user$.asObservable()
 
   constructor(private storageService: StorageService) { }
@@ -50,21 +49,36 @@ export class UserService {
       }
       this._users.push(newUser)
       this.storageService.store(this.USERS_KEY, this._users)
-      // this.loadUser()
     } else throwError(() => 'Cannot signup')
   }
 
   public login(value: Login) {
     const { username, password } = value
-    if (username && password) {
-      const users = this.storageService.load(this.USERS_KEY)
-      const user: User = users.filter(user => user.username === username && user.password === password)
-      this._user$.next(user)
-    } else throwError(() => 'Cannot login')
+    console.log('username', username);
+    const users = this.storageService.load(this.USERS_KEY)
+    console.log('users', users);
+    const user: User = users.filter(user => user.username === username && user.password === password)
+    if (user) {
+      this._user$.next(user as User)
+      this.storageService.store(this.LOGGED_IN_USER, user)
+    } else throwError(() => 'cannot login')
+    console.log('user', user);
   }
 
-  public loadUser() {
-    let user: User = this.user
+  public logOut() {
+    this.storageService.store(this.LOGGED_IN_USER, '')
+    let user: User
+    console.log('user', user);
     this._user$.next(user)
+
   }
+
+  public isAuthenticated(): boolean {
+    // console.log('this._user$.getValue(', this._user$.getValue());
+    const user = this._user$.value
+    // console.log('username', user.username);
+    return !!user
+  }
+
+
 }

@@ -7,4 +7,5 @@
         <button>Login</button>
     </form>
     <signup (onSignup)="onSignup($event)"></signup>
+    <button *ngIf="loggedInUser|async" (click)="onLogOut()">Logout</button>
 </section>
