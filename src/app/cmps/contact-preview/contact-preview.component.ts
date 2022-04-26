@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Contact } from 'src/app/models/contact.model';
 
 
@@ -11,9 +12,16 @@ export class ContactPreviewComponent implements OnInit {
 
   @Input() contact: Contact
   @Output() onSelect = new EventEmitter<string>()
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  goTo() {
+    console.log('Clicked');
+
+    this.router.navigateByUrl(`/contact/details/${this.contact._id}`)
   }
 
   get getImgContact(): string {

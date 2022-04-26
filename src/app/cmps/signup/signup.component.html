@@ -1,0 +1,11 @@
+<section class="signup-cmp">
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <label for="fullname">fullname</label>
+        <input ngModel type="text" name="fullname" id="fullname">
+        <label for="username">Username</label>
+        <input ngModel type="text" name="username" id="username">
+        <label for="password">password</label>
+        <input ngModel type="text" name="password" id="password">
+        <button>Signup</button>
+    </form>
+</section>

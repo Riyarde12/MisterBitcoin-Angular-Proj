@@ -12,6 +12,8 @@ import { ContactPreviewComponent } from './cmps/contact-preview/contact-preview.
 import { ContactFilterComponent } from './cmps/contact-filter/contact-filter.component';
 import { FormsModule } from '@angular/forms';
 import { AppHeaderComponent } from './cmps/app-header/app-header.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { SignupComponent } from './cmps/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { AppHeaderComponent } from './cmps/app-header/app-header.component';
     ContactListComponent,
     ContactPreviewComponent,
     ContactFilterComponent,
-    AppHeaderComponent
+    AppHeaderComponent,
+    LoginPageComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

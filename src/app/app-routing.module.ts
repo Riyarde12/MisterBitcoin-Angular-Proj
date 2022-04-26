@@ -5,6 +5,7 @@ import { ContactResolverService } from './services/contact-resolver.service';
 import { BitcoinAppComponent } from './pages/bitcoin-app/bitcoin-app.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { ContactEditPageComponent } from './pages/contact-edit-page/contact-edit-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 const routes: Routes = [
 
@@ -22,6 +23,10 @@ const routes: Routes = [
 
       },
     ]
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent,
   },
   {
     path: 'contact/details/:id',

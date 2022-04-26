@@ -41,7 +41,8 @@ export class ContactDetailsPageComponent implements OnInit {
     // })
   }
 
-  goTo() {
+  goTo(ev: MouseEvent) {
+    ev.stopPropagation()
     this.router.navigateByUrl(`contact/edit/${this.contact._id}`)
   }
 

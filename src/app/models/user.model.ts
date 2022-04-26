@@ -5,3 +5,14 @@ export interface User {
     coins: number
     moves: []
 }
+
+export interface Signup {
+    fullname: string
+    username: string
+    password: string
+}
+
+export interface Login {
+    username: string
+    password: string
+}

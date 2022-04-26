@@ -1,0 +1,10 @@
+<section class="login-page">
+    <form #form="ngForm" (ngSubmit)="onLogin(form)">
+        <label for="password">Username</label>
+        <input ngModel type="text" name="username" id="username" required>
+        <label for="password">Password</label>
+        <input ngModel type="text" name="password" id="password" required>
+        <button>Login</button>
+    </form>
+    <signup (onSignup)="onSignup($event)"></signup>
+</section>

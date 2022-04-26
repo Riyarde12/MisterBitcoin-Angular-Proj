@@ -12,4 +12,5 @@
         <input [(ngModel)]="contact.phone" type="text" name="phone" id="phone">
         <button>Save Contact</button>
     </form>
+    <button (click)="onDelete(contact._id)">Delete Contact</button>
 </section>

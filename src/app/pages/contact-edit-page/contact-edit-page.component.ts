@@ -27,8 +27,19 @@ export class ContactEditPageComponent implements OnInit {
     })
   }
 
+  onDelete(contactId: string) {
+    this.contactService.deleteContact(contactId)
+    this.goBack()
+    // this.router.navigateByUrl('contact')
+  }
+
   async onSaveContact() {
     await lastValueFrom(this.contactService.saveContact({ ...this.contact }))
+    this.goBack()
+    // this.router.navigateByUrl('contact')
+  }
+
+  goBack() {
     this.router.navigateByUrl('contact')
   }
 }
