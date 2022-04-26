@@ -1,0 +1,9 @@
+<section class="contact-page">
+    <div class="">
+        <contact-filter></contact-filter>
+        <a routerLink="/contact/edit">Add</a>
+    </div>
+    <contact-list (onSelect)="selectedContactId=$event" [contacts]="contacts"></contact-list>
+    <!-- <button (click)="moveTo()">Add </button> -->
+</section>
+<router-outlet></router-outlet>

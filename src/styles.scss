@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+// BASE
+@import "./styles/base/base";
+@import "./styles/base/helpers";
+@import "./styles/base/layout";
+
+body {
+    background-color: #041222;
+}
