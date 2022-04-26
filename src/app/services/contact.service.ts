@@ -158,8 +158,7 @@ export class ContactService {
     const contact = this._contactsDb.find(contact => contact._id === contactId)
 
     //return an observable
-    return contact ? of(contact) : throwError(`Contact id ${contactId
-      } not found!`)
+    return contact ? of(contact) : throwError(() => `Contact id ${contactId} not found!`)
   }
 
   public deleteContact(id: string) {
@@ -200,7 +199,6 @@ export class ContactService {
       if (a.name.toLocaleLowerCase() > b.name.toLocaleLowerCase()) {
         return 1;
       }
-
       return 0;
     })
   }
@@ -208,7 +206,6 @@ export class ContactService {
   public getEmptyContact() {
 
     return {
-      // _id: makeId(),
       name: '',
       phone: '',
       email: '',

@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { AppHeaderComponent } from './cmps/app-header/app-header.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignupComponent } from './cmps/signup/signup.component';
+import { TransferFundComponent } from './cmps/transfer-fund/transfer-fund.component';
+import { MoveListComponent } from './cmps/move-list/move-list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { SignupComponent } from './cmps/signup/signup.component';
     ContactFilterComponent,
     AppHeaderComponent,
     LoginPageComponent,
-    SignupComponent
+    SignupComponent,
+    TransferFundComponent,
+    MoveListComponent
   ],
   imports: [
     BrowserModule,
