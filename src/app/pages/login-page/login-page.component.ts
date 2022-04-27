@@ -15,12 +15,11 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   loggedInUser: Observable<User>
   subscription: Subscription
+  isUserSignup: boolean = false
 
   ngOnInit(): void {
 
     this.loggedInUser = this.userService.user$
-
-
   }
 
   onLogin(form: NgForm) {
@@ -35,6 +34,10 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   onLogOut() {
     this.userService.logOut()
+  }
+
+  onUserSelect() {
+    this.isUserSignup = !this.isUserSignup
   }
 
   ngOnDestroy(): void {

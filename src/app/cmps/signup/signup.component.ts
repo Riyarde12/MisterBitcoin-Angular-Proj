@@ -12,6 +12,7 @@ export class SignupComponent implements OnInit {
   constructor() { }
 
   @Output() onSignup = new EventEmitter<object>()
+  @Output() onSelect = new EventEmitter<object>()
 
   ngOnInit(): void {
   }
@@ -21,5 +22,6 @@ export class SignupComponent implements OnInit {
     this.onSignup.emit(form.value)
     form.reset()
   }
+
 
 }

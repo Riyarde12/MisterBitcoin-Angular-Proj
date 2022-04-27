@@ -1,11 +1,14 @@
 <section class="login-page">
-    <form #form="ngForm" (ngSubmit)="onLogin(form)">
+    <form *ngIf="isUserSignup; else elseBlock" #form="ngForm" (ngSubmit)="onLogin(form)">
         <label for="password">Username</label>
         <input ngModel type="text" name="username" id="username" required>
         <label for="password">Password</label>
         <input ngModel type="text" name="password" id="password" required>
         <button>Login</button>
+        <button (click)="onUserSelect()">Don't have an account yes ?</button>
     </form>
-    <signup (onSignup)="onSignup($event)"></signup>
+    <ng-template #elseBlock>
+        <signup (onSelect)="onUserSelect()" (onSignup)="onSignup($event)"></signup>
+    </ng-template>
     <button *ngIf="loggedInUser|async" (click)="onLogOut()">Logout</button>
 </section>
