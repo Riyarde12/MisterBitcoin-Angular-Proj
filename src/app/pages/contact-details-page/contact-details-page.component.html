@@ -1,10 +1,9 @@
 <section class="contact-details">
-    <h3>{{contact.name}}</h3>
-    <h3>{{contact.phone}}</h3>
-    <h3>{{contact.email}}</h3>
-    <!-- <button (click)="goTo($event)">Edit Contact</button> -->
-    <a routerLink="/contact/edit/{{contact._id}}">Edit Contact</a>
-    <!-- <a [routerLink]="['/contact/edit',contact._id]">Edit Contact</a> -->
-    <h3>{{contact._id}}</h3>
-    <button (click)="onBack()">Back to contacts</button>
+    <div class="container">
+        <h3>{{contact.name}}</h3>
+        <h3>{{contact.phone}}</h3>
+        <h3>{{contact.email}}</h3>
+        <a routerLink="/contact/edit/{{contact._id}}">Edit Contact</a>
+        <button (click)="onBack()">Back to contacts</button>
+    </div>
 </section>
