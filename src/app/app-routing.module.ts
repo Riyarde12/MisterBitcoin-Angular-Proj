@@ -38,7 +38,7 @@ const routes: Routes = [
   {
     path: '',
     component: BitcoinAppComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [{
       path: 'login',
       redirectTo: 'login',

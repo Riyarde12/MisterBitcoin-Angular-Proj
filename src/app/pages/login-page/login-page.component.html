@@ -10,5 +10,7 @@
     <ng-template #elseBlock>
         <signup (onSelect)="onUserSelect()" (onSignup)="onSignup($event)"></signup>
     </ng-template>
-    <button *ngIf="loggedInUser|async" (click)="onLogOut()">Logout</button>
+    <button (click)="onLogOut()">Logout</button>
+    <ng-template>
+    </ng-template>
 </section>

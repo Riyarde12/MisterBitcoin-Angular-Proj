@@ -18,7 +18,6 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   isUserSignup: boolean = false
 
   ngOnInit(): void {
-
     this.loggedInUser = this.userService.user$
   }
 

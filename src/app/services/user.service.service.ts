@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, EMPTY, throwError } from 'rxjs';
 import { Login, Signup, User } from '../models/user.model';
-import { StorageService } from './storage-service.service';
+// import { StorageService } from './storage-service.service';
+import { LocalStorageService } from './storage.service1';
 
 
 @Injectable({
@@ -22,10 +23,11 @@ export class UserService {
 
   private _users: User[] = []
 
-  private _user$ = new BehaviorSubject<User>(this.storageService.load(this.LOGGED_IN_USER) || null)
+  // private _user$ = new BehaviorSubject<User>(this.storageService.load(this.LOGGED_IN_USER) || null)
+  private _user$ = new BehaviorSubject<User>(this.storageService.loadFromStorage(this.LOGGED_IN_USER) || null)
   public user$ = this._user$.asObservable()
 
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: LocalStorageService) { }
 
   getUser(): User {
     return {
@@ -48,25 +50,29 @@ export class UserService {
         coins: 100,
       }
       this._users.push(newUser)
-      this.storageService.store(this.USERS_KEY, this._users)
+      this.storageService.saveToStorage(this.USERS_KEY, this._users)
+      // this.store(this.USERS_KEY, this._users)
     } else throwError(() => 'Cannot signup')
   }
 
   public login(value: Login) {
     const { username, password } = value
     console.log('username', username);
-    const users = this.storageService.load(this.USERS_KEY)
+    // const users = this.load(this.USERS_KEY)
+    const users = this.storageService.loadFromStorage(this.USERS_KEY)
     console.log('users', users);
     const user: User = users.filter(user => user.username === username && user.password === password)
     if (user) {
       this._user$.next(user as User)
-      this.storageService.store(this.LOGGED_IN_USER, user)
+      this.storageService.saveToStorage(this.LOGGED_IN_USER, user)
+      // this.store(this.LOGGED_IN_USER, user)
     } else throwError(() => 'cannot login')
     console.log('user', user);
   }
 
   public logOut() {
-    this.storageService.store(this.LOGGED_IN_USER, '')
+    this.storageService.saveToStorage(this.LOGGED_IN_USER, '')
+    // this.store(this.LOGGED_IN_USER, '')
     let user: User
     console.log('user', user);
     this._user$.next(user)
@@ -80,5 +86,13 @@ export class UserService {
     return !!user
   }
 
+  public store(key, value) {
+    localStorage[key] = JSON.stringify(value);
+  }
+
+  public load(key, defaultValue = []) {
+    var value = localStorage[key] || defaultValue;
+    return JSON.parse(value);
+  }
 
 }
