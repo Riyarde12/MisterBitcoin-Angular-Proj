@@ -3,5 +3,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 35px;
+    }
+
+    input {
+        border-bottom: 1px solid rgba(248, 244, 244, 0.714);
     }
 }

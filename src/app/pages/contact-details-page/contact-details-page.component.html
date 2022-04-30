@@ -5,5 +5,8 @@
         <h3>{{contact.email}}</h3>
         <a routerLink="/contact/edit/{{contact._id}}">Edit Contact</a>
         <button (click)="onBack()">Back to contacts</button>
+        <transfer-fund [contact]="contact" (onUserTransfer)="onTransferCoins($event)"></transfer-fund>
+        <move-list [moves]="loggedInUser.moves"></move-list>
     </div>
+
 </section>

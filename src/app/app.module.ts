@@ -15,7 +15,10 @@ import { AppHeaderComponent } from './cmps/app-header/app-header.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignupComponent } from './cmps/signup/signup.component';
 import { TransferFundComponent } from './cmps/transfer-fund/transfer-fund.component';
-import { MoveListComponent } from './cmps/move-list/move-list.component';
+import { MoveListComponent } from './cmps/moves-cmps/move-list/move-list.component';
+import { MovePreviewComponent } from './cmps/moves-cmps/move-preview/move-preview.component';
+
+
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { MoveListComponent } from './cmps/move-list/move-list.component';
     LoginPageComponent,
     SignupComponent,
     TransferFundComponent,
-    MoveListComponent
+    MoveListComponent,
+    MovePreviewComponent,
+
+
   ],
   imports: [
     BrowserModule,

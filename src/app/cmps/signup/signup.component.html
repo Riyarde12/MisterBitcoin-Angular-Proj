@@ -1,11 +1,11 @@
 <section class="signup-cmp">
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-        <label for="fullname">fullname</label>
-        <input ngModel type="text" name="fullname" id="fullname">
-        <label for="username">Username</label>
-        <input ngModel type="text" name="username" id="username">
-        <label for="password">password</label>
-        <input ngModel type="text" name="password" id="password">
+        <!-- <label for="fullname">fullname</label> -->
+        <input ngModel type="text" name="fullname" id="fullname" placeholder="Fullname">
+        <!-- <label for="username">Username</label> -->
+        <input ngModel type="text" name="username" id="username" placeholder="Username">
+        <!-- <label for="password">password</label> -->
+        <input ngModel type="text" name="password" id="password" placeholder="Password">
         <button>Signup</button>
         <button (click)="onSelect.emit()">Already have an account ?</button>
     </form>

@@ -1,6 +1,7 @@
 <section class="transfer-fund">
+    <h3>Transfer coins to {{contact.name}}</h3>
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-        <label for="amount">Amount</label>
-        <input ngModel type="text" name="amount" id="amount">
+        <!-- <label for="amount">Amount</label> -->
+        <input ngModel type="text" name="amount" id="amount" placeholder="Amount">
     </form>
 </section>

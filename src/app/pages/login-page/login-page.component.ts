@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Login, Signup, User } from 'src/app/models/user.model';
-import { UserService } from 'src/app/services/user.service.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'login-page',
@@ -11,19 +12,19 @@ import { UserService } from 'src/app/services/user.service.service';
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
-  loggedInUser: Observable<User>
+  // loggedInUser$: Observable<User>
   subscription: Subscription
   isUserSignup: boolean = false
 
   ngOnInit(): void {
-    this.loggedInUser = this.userService.user$
+    // this.loggedInUser$ = this.userService.user$
   }
 
   onLogin(form: NgForm) {
-    console.log('form', form.value);
     this.userService.login(form.value as Login)
+    this.router.navigateByUrl('')
     form.reset()
   }
 

@@ -1,0 +1,15 @@
+.transfer-fund {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    background-color: #040d17;
+    border: 1px solid #040f1c;
+    border-radius: 15px;
+    padding: 30px 45px 45px;
+
+    form {
+        input {
+            background-color: #040d17;
+        }
+    }
+}

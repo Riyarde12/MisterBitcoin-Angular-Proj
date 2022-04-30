@@ -16,3 +16,10 @@ export interface Login {
     username: string
     password: string
 }
+
+export interface Move {
+    toId: string
+    to: string
+    at: number
+    amount: number
+}

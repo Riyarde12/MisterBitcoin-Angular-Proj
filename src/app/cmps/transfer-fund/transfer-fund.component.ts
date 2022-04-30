@@ -1,8 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Contact } from 'src/app/models/contact.model';
 
 @Component({
-  selector: 'app-transfer-fund',
+  selector: 'transfer-fund',
   templateUrl: './transfer-fund.component.html',
   styleUrls: ['./transfer-fund.component.scss']
 })
@@ -10,14 +11,15 @@ export class TransferFundComponent implements OnInit {
 
   constructor() { }
 
-  @Output() onUserMove = new EventEmitter<number>()
+  @Input() contact: Contact
+  @Output() onUserTransfer = new EventEmitter<object>()
 
   ngOnInit(): void {
   }
 
   onSubmit(form: NgForm) {
     console.log('form.value', form.value);
-    this.onUserMove.emit(form.value)
+    this.onUserTransfer.emit(form.value as object)
   }
 
 }

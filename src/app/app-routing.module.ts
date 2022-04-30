@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactDetailsPageComponent } from './pages/contact-details-page/contact-details-page.component';
 import { ContactResolverService } from './services/contact-resolver.service';
@@ -7,6 +7,8 @@ import { ContactPageComponent } from './pages/contact-page/contact-page.componen
 import { ContactEditPageComponent } from './pages/contact-edit-page/contact-edit-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { AuthGuard } from './guards/auth.guard';
+import { LoggedInGuard } from './guards/logged-in.guard';
+// import { LogoutComponent } from './cmps/logout/logout.component';
 
 const routes: Routes = [
 
@@ -29,6 +31,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginPageComponent,
+    canActivate: [LoggedInGuard],
+
+    // children: [{
+    // path: 'logout',
+    // component: LogoutComponent,
+    // }]
   },
   {
     path: 'contact/details/:id',
@@ -38,13 +46,13 @@ const routes: Routes = [
   {
     path: '',
     component: BitcoinAppComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [{
       path: 'login',
       redirectTo: 'login',
     }]
   },
-  // { path: "login", redirectTo: "/login"},
+
 ];
 
 @NgModule({

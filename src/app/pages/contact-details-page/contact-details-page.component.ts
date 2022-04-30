@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, NgModule, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom, Subscription, switchMap } from 'rxjs';
 import { Contact } from 'src/app/models/contact.model';
+import { Move, User } from 'src/app/models/user.model';
 import { ContactService } from 'src/app/services/contact.service';
-
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'contact-details-page',
@@ -15,30 +16,25 @@ export class ContactDetailsPageComponent implements OnInit {
   constructor(
     private contactService: ContactService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
   ) { }
   subscription: Subscription
   contact: Contact
+  loggedInUser: User
   @Input() contactId: string
 
 
   async ngOnInit() {
-    // this.route.data.subscribe((data) => {
-    //   this.contact = data['contact']
-    // })
 
     this.route.data.subscribe((data) => {
       this.contact = data['contact']
+      // console.log('this.contact', this.contact);
     })
-    // this.route.params.subscribe(async params => {
-    //   // const contact = await this.contactService.getContactById(params.id).toPromise()
-    //   const contact = await lastValueFrom(this.contactService.getContactById(params.id))
-    //   this.contact = contact
-    // })
 
-    // this.route.params.pipe(switchMap((params) => this.contactService.getContactById(params['id']))).subscribe(contact => {
-    //   this.contact = contact
-    // })
+    this.userService.user$.subscribe(user => {
+      this.loggedInUser = user
+    })
   }
 
   goTo(ev: MouseEvent) {
@@ -46,8 +42,22 @@ export class ContactDetailsPageComponent implements OnInit {
     this.router.navigateByUrl(`contact/edit/${this.contact._id}`)
   }
 
+  async onTransferCoins(value: object) {
+    try {
+      await this.userService.updateUserCoins(value as object)
+      const move: Move = this.userService.addMove(this.contact, value)
+      console.log('move', move);
+      this.loggedInUser.moves.push(move as never)
+      this.userService.saveUser(this.loggedInUser)
+    } catch (err) {
+      console.log('Cannot make transaction');
+
+    }
+  }
+
   onBack() {
     this.router.navigateByUrl('contact')
   }
+
 
 }
