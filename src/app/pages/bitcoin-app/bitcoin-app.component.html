@@ -3,11 +3,14 @@
         <h2>Welcome back {{user.fullname}}</h2>
         <div>
             <img src="../../../assets/icons/coins.png" alt="">
-            <span>Coins {{user.coins}}</span>
+            <span>Coins : {{user.coins}}</span>
         </div>
         <div>
             <img src="../../../assets/icons/bitcoin.png" alt="">
-            <span> {{currBitcoin$ | async}}</span>
+            <span> Your Bitcoin Wallet : {{currBitcoin$ | async}}</span>
         </div>
+
+        <three-moves [moves]="user.moves"></three-moves>
+
     </div>
 </section>

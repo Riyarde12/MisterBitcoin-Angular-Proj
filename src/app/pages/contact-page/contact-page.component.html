@@ -1,7 +1,9 @@
 <section class="contact-page">
     <div class="">
         <contact-filter></contact-filter>
-        <a routerLink="/contact/edit">Add</a>
+        <a routerLink="/contact/edit">
+            <img src="../../../assets/icons/plus.png" alt="">
+        </a>
     </div>
     <contact-list (onSelect)="selectedContactId=$event" [contacts]="contacts"></contact-list>
     <!-- <button (click)="moveTo()">Add </button> -->

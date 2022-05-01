@@ -94,6 +94,7 @@ export class UserService {
     try {
       const [user] = await this.storageService.loadFromStorage(this.LOGGED_IN_USER)
       if (user.coins > amount) {
+        console.log('user.coins', user.coins);
         user.coins -= amount
         this._user$.next(user as User)
       } else throw new Error('Not enough coins to make a transaction')

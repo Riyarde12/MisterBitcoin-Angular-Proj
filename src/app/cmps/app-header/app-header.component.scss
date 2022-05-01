@@ -1,0 +1,36 @@
+.app-header {
+    nav {
+        display: flex;
+        margin-top: 10px;
+        margin-left: 25px;
+
+        & > * {
+            margin-right: 6.25rem;
+        }
+    }
+
+    a {
+        &:hover {
+            box-shadow: none;
+        }
+    }
+    img {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    button {
+        padding: 0px;
+        border: 0px;
+        border-radius: 0px;
+
+        &:hover {
+            box-shadow: none;
+        }
+    }
+
+    .logout-btn {
+        position: absolute;
+        right: 0;
+    }
+}

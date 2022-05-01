@@ -1,14 +1,20 @@
 <section class="app-header">
     <nav>
-        <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home Page</a>
-        <a routerLink="contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Contact Page</a>
-        <a *ngIf="!loggedInUser; else elseBlock " routerLink="login" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact:true}">Login</a>
+        <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <img src="../../../assets/icons/home.png" alt="">
+        </a>
+        <a routerLink="contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <img src="../../../assets/icons/users.png" alt="">
+        </a>
 
-        <ng-template #elseBlock>
-            <button (click)="onLogout()">Logout</button>
-        </ng-template>
-        <!-- TODO: a Button for logout Emit to login Page -->
+        <img src="../../../assets/icons/increase.png" alt="">
+
+        <a *ngIf="!loggedInUser; else elseBlock " routerLink="login" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}"><img src="../../../assets/icons/log-in.png" alt=""></a>
     </nav>
+    <ng-template #elseBlock>
+        <button class="logout-btn" (click)="onLogout()"><img src="../../../assets/icons/exit.png" alt=""></button>
+    </ng-template>
+    <!-- TODO: a Button for logout Emit to login Page -->
 
 </section>
