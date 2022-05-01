@@ -19,6 +19,7 @@ import { TransferFundComponent } from './cmps/transfer-fund/transfer-fund.compon
 import { MovePreviewComponent } from './cmps/moves-cmps/move-preview/move-preview.component';
 import { ThreeMovesComponent } from './cmps/moves-cmps/three-moves/three-moves.component';
 import { MoveListComponent } from './cmps/moves-cmps/move-list/move-list.component';
+import { StatisticPageComponent } from './pages/statistic-page/statistic-page.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { MoveListComponent } from './cmps/moves-cmps/move-list/move-list.compone
     MoveListComponent,
     MovePreviewComponent,
     ThreeMovesComponent,
+    StatisticPageComponent,
 
 
   ],

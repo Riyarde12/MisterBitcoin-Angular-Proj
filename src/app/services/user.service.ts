@@ -56,9 +56,10 @@ export class UserService {
     const { username, password } = value
     const users = this.storageService.loadFromStorage(this.USERS_KEY)
     const user: User = users.filter(user => user.username === username && user.password === password)
+    console.log('user', user);
     if (user) {
-      this._user$.next(user as User)
-      this.storageService.saveToStorage(this.LOGGED_IN_USER, user)
+      this._user$.next(user[0] as User)
+      this.storageService.saveToStorage(this.LOGGED_IN_USER, user[0])
     } else throwError(() => 'cannot login')
     console.log('user', user);
   }

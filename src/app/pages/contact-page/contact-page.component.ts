@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ContactService } from 'src/app/services/contact.service';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Contact } from 'src/app/models/contact.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'contact-page',
@@ -18,15 +18,12 @@ export class ContactPageComponent implements OnInit, OnDestroy {
 
   subscription: Subscription
 
-
   contacts: Contact[]
   selectedContactId: string
-  // contacts$: Observable<Contact[]>
 
   ngOnInit(): void {
     this.contactService.loadContacts()
     this.subscription = this.contactService.contacts$.subscribe(contacts => this.contacts = contacts)
-
   }
 
   moveTo() {
@@ -36,7 +33,4 @@ export class ContactPageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
   }
-
-
-
 }

@@ -1,15 +1,12 @@
-<!-- <a routerLink="{{contact._id}}" class="data"> -->
-<li (click)="onSelect.emit(contact._id)">
-    <!-- <a [routerLink]="['/contact/details',contact._id]" class="data"> -->
+<li>
+
 
     <div class="contact-container" (click)="goTo()">
         <img [src]="getImgContact" alt="">
-        <!-- <div > -->
+
         <span>{{contact.name}} </span>
-        <span>{{contact.phone}}</span>
-        <!-- </div> -->
+
     </div>
     <a routerLink="/contact/edit/{{contact._id}}">Edit contact</a>
-    <!-- </a> -->
-    <!-- <a [routerLink]="['/edit',contact._id]">Edit contact</a> -->
+
 </li>

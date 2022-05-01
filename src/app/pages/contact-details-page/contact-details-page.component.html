@@ -1,8 +1,13 @@
 <section class="contact-details">
-    <div class="container">
-        <h3>{{contact.name}}</h3>
-        <h3>{{contact.phone}}</h3>
-        <h3>{{contact.email}}</h3>
+    <div class="details-container">
+        <div class="contact-info">
+            <div>
+                <h3>{{contact.name}}</h3>
+                <h3>{{contact.phone}}</h3>
+                <h3>{{contact.email}}</h3>
+            </div>
+            <img [src]="getImgContact" alt="">
+        </div>
         <a routerLink="/contact/edit/{{contact._id}}">Edit Contact</a>
         <button (click)="onBack()">Back to contacts</button>
         <transfer-fund [contact]="contact" (onUserTransfer)="onTransferCoins($event)"></transfer-fund>

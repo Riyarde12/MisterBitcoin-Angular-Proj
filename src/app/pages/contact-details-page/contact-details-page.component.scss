@@ -5,10 +5,25 @@
     margin-top: 25px;
     gap: 35px;
 
-    .container {
+    .details-container {
         display: flex;
         flex-direction: column;
         gap: 25px;
+
+        .contact-info {
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: 0.9375rem;
+            }
+
+            img {
+                width: 5.875rem;
+            }
+        }
     }
 
     a {
@@ -17,5 +32,9 @@
         padding: 6px;
         border: 1px solid #ece7e7d6;
         border-radius: 30px;
+
+        &:hover {
+            box-shadow: 3px 1px 19px #434e5c;
+        }
     }
 }

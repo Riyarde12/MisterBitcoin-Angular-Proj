@@ -11,7 +11,7 @@ import { Contact } from 'src/app/models/contact.model';
 export class ContactPreviewComponent implements OnInit {
 
   @Input() contact: Contact
-  @Output() onSelect = new EventEmitter<string>()
+
 
   constructor(private router: Router) { }
 

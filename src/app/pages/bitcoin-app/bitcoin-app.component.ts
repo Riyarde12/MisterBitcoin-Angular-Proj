@@ -24,6 +24,7 @@ export class BitcoinAppComponent implements OnInit, OnDestroy {
       this.user = user
     })
     this.currBitcoin$ = this.bitcoinService.getRate(this.user.coins)
+    console.log('this.user', this.user);
   }
 
   ngOnDestroy() {

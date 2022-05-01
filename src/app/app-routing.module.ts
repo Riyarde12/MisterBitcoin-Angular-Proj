@@ -6,9 +6,9 @@ import { BitcoinAppComponent } from './pages/bitcoin-app/bitcoin-app.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { ContactEditPageComponent } from './pages/contact-edit-page/contact-edit-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { StatisticPageComponent } from './pages/statistic-page/statistic-page.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoggedInGuard } from './guards/logged-in.guard';
-// import { LogoutComponent } from './cmps/logout/logout.component';
 
 const routes: Routes = [
 
@@ -32,16 +32,16 @@ const routes: Routes = [
     path: 'login',
     component: LoginPageComponent,
     canActivate: [LoggedInGuard],
-
-    // children: [{
-    // path: 'logout',
-    // component: LogoutComponent,
-    // }]
   },
   {
     path: 'contact/details/:id',
     component: ContactDetailsPageComponent,
     resolve: { contact: ContactResolverService }
+  },
+  {
+    path: 'statistic',
+    component: StatisticPageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '',

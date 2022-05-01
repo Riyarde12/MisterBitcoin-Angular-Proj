@@ -55,6 +55,10 @@ export class ContactDetailsPageComponent implements OnInit {
     }
   }
 
+  get getImgContact(): string {
+    return `https://robohash.org/set_set5/${this.contact._id}`
+  }
+
   onBack() {
     this.router.navigateByUrl('contact')
   }
