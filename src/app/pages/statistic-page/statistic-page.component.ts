@@ -15,13 +15,18 @@ export class StatisticPageComponent implements OnInit, OnDestroy {
   subscription: Subscription
 
   ngOnInit(): void {
-    const res = this.bitcoinService.getMarketPrice()
-    console.log('res', res);
-    this.subscription = this.bitcoinService.marketPrice$.subscribe(res => {
-      this.marketPrice = res
+    // const res = this.bitcoinService.getMarketPrice()
+    // const data = res.subscribe(res => {
+    //   this.marketPrice = res
+    // })
+    this.getMarketPrice()
+    // console.log('marketPrice', this.marketPrice);
+  }
 
-    })
-    console.log('this.markterPrice', this.marketPrice);
+  async getMarketPrice() {
+    this.marketPrice = await this.bitcoinService.getMarketPrice()
+    console.log('this.marketPrice', this.marketPrice);
+
   }
 
   ngOnDestroy(): void {

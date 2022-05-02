@@ -22,9 +22,11 @@ export class BitcoinAppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.userService.user$.subscribe(user => {
       this.user = user
+      console.log('user', user);
+      console.log('this.user', this.user);
     })
     this.currBitcoin$ = this.bitcoinService.getRate(this.user.coins)
-    console.log('this.user', this.user);
+
   }
 
   ngOnDestroy() {

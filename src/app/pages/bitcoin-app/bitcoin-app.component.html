@@ -10,7 +10,7 @@
             <span> Your Bitcoin Wallet : {{currBitcoin$ | async}}</span>
         </div>
 
-        <three-moves [moves]="user.moves"></three-moves>
+        <three-moves *ngIf="user.moves" [moves]="user.moves"></three-moves>
 
     </div>
 </section>

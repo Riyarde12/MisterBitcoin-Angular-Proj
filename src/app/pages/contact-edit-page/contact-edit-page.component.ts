@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
@@ -16,6 +17,7 @@ export class ContactEditPageComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private contactService: ContactService,
+    private location: Location
   ) { }
 
   contact: Contact

@@ -1,7 +1,8 @@
 <section class="contact-edit">
-    <h1>{{'Add'}}</h1>
-    <form (ngSubmit)="onSaveContact()">
 
+    <h1 *ngIf="contact._id">{{contact._id? 'Edit contact' : 'Add contact'}}</h1>
+    <form (ngSubmit)="onSaveContact()">
+        <button (click)="goBack()">Back</button>
         <label for="name">Name</label>
         <input [(ngModel)]="contact.name" type="text" name="name" id="name">
 
@@ -13,4 +14,5 @@
         <button>Save Contact</button>
     </form>
     <button (click)="onDelete(contact._id)">Delete Contact</button>
+
 </section>

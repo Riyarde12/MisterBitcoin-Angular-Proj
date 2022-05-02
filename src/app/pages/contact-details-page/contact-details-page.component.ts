@@ -34,6 +34,7 @@ export class ContactDetailsPageComponent implements OnInit {
 
     this.userService.user$.subscribe(user => {
       this.loggedInUser = user
+      console.log('this.loggedInUser', this.loggedInUser);
     })
   }
 
@@ -42,13 +43,12 @@ export class ContactDetailsPageComponent implements OnInit {
     this.router.navigateByUrl(`contact/edit/${this.contact._id}`)
   }
 
-  async onTransferCoins(value: object) {
+  onTransferCoins(value: object) {
     try {
-      await this.userService.updateUserCoins(value as object)
-      const move: Move = this.userService.addMove(this.contact, value)
-      console.log('move', move);
-      this.loggedInUser.moves.push(move as never)
-      this.userService.saveUser(this.loggedInUser)
+      this.userService.updateUserCoins(value as object)
+      this.userService.addMove(this.contact, value)
+      // this.loggedInUser.moves.push(move as never)
+      // this.userService.saveUser(this.loggedInUser)
     } catch (err) {
       console.log('Cannot make transaction');
 

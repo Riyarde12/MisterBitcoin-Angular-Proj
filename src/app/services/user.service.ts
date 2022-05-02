@@ -3,6 +3,8 @@ import { BehaviorSubject, throwError } from 'rxjs';
 import { Contact } from '../models/contact.model';
 import { Login, Move, Signup, User } from '../models/user.model';
 import { LocalStorageService } from './storage.service';
+import { makeId } from '../../Util/utilService'
+
 
 
 @Injectable({
@@ -10,13 +12,13 @@ import { LocalStorageService } from './storage.service';
 })
 export class UserService {
 
-  user: User = {
-    fullname: 'Yarden',
-    username: 'yarden',
-    coins: 100,
-    password: '1234',
-    moves: []
-  }
+  // user: User = {
+  //   fullname: 'Yarden',
+  //   username: 'yarden',
+  //   coins: 100,
+  //   password: '1234',
+  //   moves: []
+  // }
 
   private LOGGED_IN_USER: string = 'loggedInUser'
   private USERS_KEY: string = 'users'
@@ -27,26 +29,11 @@ export class UserService {
 
   constructor(private storageService: LocalStorageService) { }
 
-  getUser(): User {
-    return {
-      fullname: 'Yarden',
-      username: 'yarden',
-      coins: 100,
-      password: '1234',
-      moves: []
-    }
-  }
 
   public signUp(value: Signup) {
     const { fullname, username, password } = value
     if (fullname && username && password) {
-      var newUser: User = {
-        fullname,
-        username,
-        password,
-        moves: [],
-        coins: 100,
-      }
+      const newUser = this.makeUser(fullname, username, password)
       this._gUsers.push(newUser)
       this.storageService.saveToStorage(this.USERS_KEY, this._gUsers)
     } else throwError(() => 'Cannot signup')
@@ -55,53 +42,36 @@ export class UserService {
   public login(value: Login) {
     const { username, password } = value
     const users = this.storageService.loadFromStorage(this.USERS_KEY)
-    const user: User = users.filter(user => user.username === username && user.password === password)
-    console.log('user', user);
+    const user: User = users.filter((user: User) => user.username === username && user.password === password)
     if (user) {
-      this._user$.next(user[0] as User)
       this.storageService.saveToStorage(this.LOGGED_IN_USER, user[0])
+      this._user$.next(user[0] as User)
     } else throwError(() => 'cannot login')
-    console.log('user', user);
   }
 
   public logOut() {
-    // this.storageService.saveToStorage(this.LOGGED_IN_USER, '')
     this.storageService.removedFromStorage(this.LOGGED_IN_USER)
-
     let user: User
-    console.log('user', user);
     this._user$.next(user)
-
   }
 
   public isAuthenticated(): boolean {
-    // console.log('this._user$.getValue(', this._user$.getValue());
     const user = this._user$.value
     return !!user
   }
 
-  public store(key, value) {
-    localStorage[key] = JSON.stringify(value);
-  }
-
-  public load(key, defaultValue = []) {
-    var value = localStorage[key] || defaultValue;
-    return JSON.parse(value);
-  }
-
-  public async updateUserCoins(value: object | any) {
+  public updateUserCoins(value: object | any) {
     let { amount } = value
     amount = +amount
     try {
-      const [user] = await this.storageService.loadFromStorage(this.LOGGED_IN_USER)
+      const user = this.storageService.loadFromStorage(this.LOGGED_IN_USER)
       if (user.coins > amount) {
-        console.log('user.coins', user.coins);
         user.coins -= amount
-        this._user$.next(user as User)
+        this.storageService.saveToStorage(this.LOGGED_IN_USER, user)
+        this.saveUser(user)
       } else throw new Error('Not enough coins to make a transaction')
     } catch (err) {
       console.log('Cannot transfer coins ', err);
-
     }
   }
 
@@ -115,13 +85,30 @@ export class UserService {
       at: Date.now(),
       amount,
     }
-    return move
+    const user = this.storageService.loadFromStorage(this.LOGGED_IN_USER)
+    user.moves.push(move)
+    console.log('user', user);
+    this.storageService.saveToStorage(this.LOGGED_IN_USER, user)
+    this.saveUser(user)
   }
 
-  public async saveUser(user: User) {
-    console.log('user', user);
-    this.storageService.saveToStorage(this.LOGGED_IN_USER as string, user as User)
-    this._user$.next(user as User)
+  public async saveUser(currUser: User) {
+    const idx = this._gUsers.findIndex(user => user._id === currUser._id)
+    this._gUsers.splice(idx, 1, currUser)
+    this.storageService.saveToStorage(this.USERS_KEY as string, this._gUsers as User[])
+    this._user$.next(currUser as User)
+  }
+
+  private makeUser(fullname: string, username: string, password: string) {
+    var newUser: User = {
+      _id: makeId(),
+      fullname,
+      username,
+      password,
+      moves: [],
+      coins: 100,
+    }
+    return newUser
   }
 
 }

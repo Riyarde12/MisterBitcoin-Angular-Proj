@@ -20,6 +20,7 @@ export class TransferFundComponent implements OnInit {
   onSubmit(form: NgForm) {
     console.log('form.value', form.value);
     this.onUserTransfer.emit(form.value as object)
+    form.reset()
   }
 
 }
