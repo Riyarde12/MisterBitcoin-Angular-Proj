@@ -11,12 +11,14 @@ export class AuthGuard implements CanActivate {
 
   constructor(private userService: UserService, private router: Router) { }
 
-  async canActivate(
+  canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Promise<boolean> {
+    state: RouterStateSnapshot): any {
     const isLoggedIn = this.userService.isAuthenticated()
     console.log('isLoggedIn', isLoggedIn);
-    // if (isLoggedIn) this.router.navigateByUrl('/login')
+    // if (!isLoggedIn) this.router.navigateByUrl('/login')
+    // else return isLoggedIn
+    // if (isLoggedIn)  
     return isLoggedIn
   }
 

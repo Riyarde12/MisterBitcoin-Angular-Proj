@@ -9,7 +9,7 @@
         <a routerLink="statistic" routerLinkActive="active"><img src="assets/icons/increase.png" alt="Statistic Page">
         </a>
         <a *ngIf="!loggedInUser; else elseBlock " routerLink="login" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact:true}"><img src="assets/icons/log-in.png" alt="Login"></a>
+            [routerLinkActiveOptions]="{exact:true}"><img src="assets/icons/login.png" alt="Login"></a>
     </nav>
     <ng-template #elseBlock>
         <button class="logout-btn" (click)="onLogout()"><img src="assets/icons/exit.png" alt="Logout"></button>

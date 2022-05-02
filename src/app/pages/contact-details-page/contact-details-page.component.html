@@ -8,7 +8,10 @@
             </div>
             <img [src]="getImgContact" alt="">
         </div>
+        <!-- <div> -->
         <a routerLink="/contact/edit/{{contact._id}}">Edit Contact</a>
+        <!-- <img src="/assets/icons/edit.png" alt="Edit Contact"> -->
+        <!-- </div> -->
         <button (click)="onBack()">Back to contacts</button>
         <transfer-fund [contact]="contact" (onUserTransfer)="onTransferCoins($event)"></transfer-fund>
         <move-list [moves]="loggedInUser.moves"></move-list>

@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { importExpr } from '@angular/compiler/src/output/output_ast';
+import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
@@ -7,11 +8,17 @@ import { BaseChartDirective } from 'ng2-charts';
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.scss']
 })
-export class LineChartComponent {
+export class LineChartComponent implements OnInit {
 
-  public lineChartType: ChartType = 'line';
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+  @Input() tradesVolume: { x: number, y: number }[]
+
+  ngOnInit(): void {
+    this.tradesVolumeForDisplay()
+  }
+
+  public lineChartType: ChartType = 'line';
 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
@@ -26,33 +33,21 @@ export class LineChartComponent {
         pointHoverBorderColor: 'rgba(148,159,177,0.8)',
         fill: 'origin',
       },
-      // {
-      //   data: [28, 48, 40, 19, 86, 27, 90],
-      //   label: 'Series B',
-      //   backgroundColor: 'rgba(77,83,96,0.2)',
-      //   borderColor: 'rgba(77,83,96,1)',
-      //   pointBackgroundColor: 'rgba(77,83,96,1)',
-      //   pointBorderColor: '#fff',
-      //   pointHoverBackgroundColor: '#fff',
-      //   pointHoverBorderColor: 'rgba(77,83,96,1)',
-      //   fill: 'origin',
-      // },
-      // {
-      //   data: [180, 480, 770, 90, 1000, 270, 400],
-      //   label: 'Series C',
-      //   yAxisID: 'y-axis-1',
-      //   backgroundColor: 'rgba(255,0,0,0.3)',
-      //   borderColor: 'red',
-      //   pointBackgroundColor: 'rgba(148,159,177,1)',
-      //   pointBorderColor: '#fff',
-      //   pointHoverBackgroundColor: '#fff',
-      //   pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-      //   fill: 'origin',
-      // }
     ],
     // labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July']
     labels: []
   };
+
+  tradesVolumeForDisplay() {
+    const dates = this.tradesVolume.map((item) => {
+      return new Date(item.x * 1000).toDateString()
+    })
+    this.lineChartData.labels = dates
+    console.log('dates', dates);
+    const data = this.tradesVolume.map((item) => item.y)
+    console.log('data', data);
+    this.lineChartData.datasets[0].data = data
+  }
 
   public lineChartOptions: ChartConfiguration['options'] = {
     elements: {
