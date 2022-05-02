@@ -1,18 +1,17 @@
 <section class="app-header">
     <nav>
         <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-            <img src="../../../assets/icons/home.png" alt="Home Page">
+            <img src="assets/icons/home.png" alt="Home Page">
         </a>
         <a routerLink="contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-            <img src="../../../assets/icons/users.png" alt="Contacts Page">
+            <img src="assets/icons/users.png" alt="Contacts Page">
         </a>
-        <a routerLink="statistic" routerLinkActive="active"><img src="../../../assets/icons/increase.png"
-                alt="Statistic Page">
+        <a routerLink="statistic" routerLinkActive="active"><img src="assets/icons/increase.png" alt="Statistic Page">
         </a>
         <a *ngIf="!loggedInUser; else elseBlock " routerLink="login" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact:true}"><img src="../../../assets/icons/log-in.png" alt="Login"></a>
+            [routerLinkActiveOptions]="{exact:true}"><img src="assets/icons/log-in.png" alt="Login"></a>
     </nav>
     <ng-template #elseBlock>
-        <button class="logout-btn" (click)="onLogout()"><img src="../../../assets/icons/exit.png" alt="Logout"></button>
+        <button class="logout-btn" (click)="onLogout()"><img src="assets/icons/exit.png" alt="Logout"></button>
     </ng-template>
 </section>
