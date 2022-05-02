@@ -86,7 +86,7 @@ export class UserService {
       amount,
     }
     const user = this.storageService.loadFromStorage(this.LOGGED_IN_USER)
-    user.moves.push(move)
+    user.moves.unshift(move)
     console.log('user', user);
     this.storageService.saveToStorage(this.LOGGED_IN_USER, user)
     this.saveUser(user)

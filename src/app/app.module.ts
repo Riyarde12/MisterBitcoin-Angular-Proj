@@ -20,6 +20,9 @@ import { MovePreviewComponent } from './cmps/moves-cmps/move-preview/move-previe
 import { ThreeMovesComponent } from './cmps/moves-cmps/three-moves/three-moves.component';
 import { MoveListComponent } from './cmps/moves-cmps/move-list/move-list.component';
 import { StatisticPageComponent } from './pages/statistic-page/statistic-page.component';
+import { BarChartComponent } from './cmps/bar-chart/bar-chart.component';
+import { NgChartsModule } from 'ng2-charts';
+import { LineChartComponent } from './cmps/line-chart/line-chart.component';
 
 
 @NgModule({
@@ -40,6 +43,8 @@ import { StatisticPageComponent } from './pages/statistic-page/statistic-page.co
     MovePreviewComponent,
     ThreeMovesComponent,
     StatisticPageComponent,
+    BarChartComponent,
+    LineChartComponent,
 
 
   ],
@@ -47,7 +52,8 @@ import { StatisticPageComponent } from './pages/statistic-page/statistic-page.co
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
