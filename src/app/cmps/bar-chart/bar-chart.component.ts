@@ -13,8 +13,8 @@ import { mergeWith, timestamp } from 'rxjs';
 export class BarChartComponent implements OnInit {
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
-  @Input() marketPrice
-  @Input() tradesVolume
+  @Input() marketPrice: { x: number, y: number }[]
+  @Input() tradesVolume: { x: number, y: number }[]
 
 
   public barChartOptions: ChartConfiguration['options'] = {
@@ -46,8 +46,6 @@ export class BarChartComponent implements OnInit {
     this.getXValue()
     this.tradesVolumeForDisplay()
   }
-
-
 
   public barChartData: ChartData<'bar'> = {
     labels: [],

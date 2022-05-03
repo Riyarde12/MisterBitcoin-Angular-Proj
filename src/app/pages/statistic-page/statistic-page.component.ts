@@ -13,8 +13,8 @@ export class StatisticPageComponent implements OnInit, OnDestroy {
     private bitcoinService: BitcoinService,
   ) { }
 
-  tradesVolume: any
-  marketPrice: object
+  tradesVolume: { x: number, y: number }[]
+  marketPrice: { x: number, y: number }[]
   subscription: Subscription
 
   ngOnInit(): void {
@@ -23,7 +23,7 @@ export class StatisticPageComponent implements OnInit, OnDestroy {
   }
 
   getTradeVolume() {
-    this.bitcoinService.getTradeVolume().subscribe(vals => {
+    this.bitcoinService.getTradeVolume().subscribe((vals: { x: number, y: number }[]) => {
       console.log('vals from getTradeVolume', vals);
       this.tradesVolume = vals
     })
@@ -31,7 +31,7 @@ export class StatisticPageComponent implements OnInit, OnDestroy {
 
   getMarketPrice() {
     const obs = this.bitcoinService.getMarketPrice()
-    this.subscription = obs.subscribe(vals => {
+    this.subscription = obs.subscribe((vals: { x: number, y: number }[]) => {
       console.log('vals from obs, cmp', vals);
       this.marketPrice = vals
     })

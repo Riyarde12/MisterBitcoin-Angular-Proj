@@ -10,8 +10,8 @@
         </a>
         <a *ngIf="!loggedInUser; else elseBlock " routerLink="login" routerLinkActive="active"
             [routerLinkActiveOptions]="{exact:true}"><img src="assets/icons/log-in.png" alt="Login"></a>
+        <ng-template #elseBlock>
+            <button class="logout-btn" (click)="onLogout()"><img src="assets/icons/exit.png" alt="Logout"></button>
+        </ng-template>
     </nav>
-    <ng-template #elseBlock>
-        <button class="logout-btn" (click)="onLogout()"><img src="assets/icons/exit.png" alt="Logout"></button>
-    </ng-template>
 </section>
