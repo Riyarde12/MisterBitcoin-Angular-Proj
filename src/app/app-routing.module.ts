@@ -31,7 +31,7 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginPageComponent,
-    canActivate: [LoggedInGuard],
+    // canActivate: [LoggedInGuard],
   },
   {
     path: 'contact/details/:id',
@@ -47,11 +47,13 @@ const routes: Routes = [
     path: '',
     component: BitcoinAppComponent,
     canActivate: [AuthGuard],
-    children: [{
-      path: 'login',
-      redirectTo: 'login',
-    }]
+    // children: [{
+    //   path: '',
+    //   redirectTo: 'login',
+    //   pathMatch: 'full'
+    // }]
   },
+  // { path: '', redirectTo: 'login', pathMatch: 'full' }
 
 ];
 
