@@ -4,13 +4,13 @@
     <form (ngSubmit)="onSaveContact()">
         <button (click)="goBack()">Back</button>
         <label for="name">Name</label>
-        <input [ngModel]="contact.name" type="text" name="name" id="name">
+        <input [(ngModel)]="contact.name" type="text" name="name" id="name">
 
         <label for="email">Email</label>
-        <input [ngModel]="contact.email" type="text" name="email" id="email">
+        <input [(ngModel)]="contact.email" type="text" name="email" id="email">
 
         <label for="phone">Phone Number</label>
-        <input [ngModel]="contact.phone" type="text" name="phone" id="phone">
+        <input [(ngModel)]="contact.phone" type="text" name="phone" id="phone">
         <button>Save Contact</button>
     </form>
     <button (click)="onDelete(contact._id)">Delete Contact</button>
